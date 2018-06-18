@@ -6,33 +6,43 @@
 
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
   Text,
-  View
+  View,
+  TextInput,
+  TouchableOpacity,
 } from 'react-native';
 
-const instructions = Platform.select({
-  ios: 'Press Cmd+R to reload,\n' +
-    'Cmd+D or shake for dev menu',
-  android: 'Double tap R on your keyboard to reload,\n' +
-    'Shake or press menu button for dev menu',
-});
 
-type Props = {};
-export default class App extends Component<Props> {
+export default class App extends Component {
+
+  state = {
+    email: '',
+    password: '',
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit App.js
-        </Text>
-        <Text style={styles.instructions}>
-          {instructions}
-        </Text>
+
+        <TextInput
+          style={styles.input}
+          placeholder="Digite seu e-mail"
+          value={this.state.email}
+          onChangeText={email => this.state({ email })}
+        />
+
+        <TextInput
+          style={styles.input}
+          placeholder="Digite sua senha"
+          value={this.state.password}
+          onChangeText={email => this.state({ password })}
+        />
+
+        <TouchableOpacity style={styles.button} onPress={() => {}}>
+          <Text style={styles.buttonText}> Logar </Text>
+        </TouchableOpacity>
+
       </View>
     );
   }
@@ -43,16 +53,28 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#333',
+    padding: 20,
   },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
+  input: {
+    height: 45,
+    backgroundColor: '#FFF',
+    alignSelf: 'stretch',
+    borderColor: '#EEE',
+    borderWidth: 1,
+    paddingHorizontal: 20,
+    marginBottom: 10,
   },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
+  button: {
+    height: 45,
+    backgroundColor: '#069',
+    alignSelf: 'stretch',    
+    paddingHorizontal: 20,
+    justifyContent: 'center',
+    alignItems: 'center'    
   },
+  buttonText: {
+    color: '#FFF',
+    fontWeight: 'bold'
+  }
 });
